@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <None Remove="Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DownloadTaskRunner.cs" />
+    <Compile Remove="FtpDownloadImplementer.cs" />
+    <Compile Remove="HttpDownloadImplementer.cs" />
+    <Compile Remove="RetryFailedDownloads.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DownloaderFactory\DownloaderFactory.csproj" />
+    <ProjectReference Include="..\InputFileReader\InputFileReader.csproj" />
+    <ProjectReference Include="..\SettingsManager\SettingsManager.csproj" />
+  </ItemGroup>
+
+</Project>

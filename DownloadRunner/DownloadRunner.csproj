@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DownloaderFactory\DownloaderFactory.csproj" />
+    <ProjectReference Include="..\DownloadManager\DownloadManager.csproj" />
+    <ProjectReference Include="..\InputFileReader\InputFileReader.csproj" />
+    <ProjectReference Include="..\SettingsManager\SettingsManager.csproj" />
+  </ItemGroup>
+
+</Project>

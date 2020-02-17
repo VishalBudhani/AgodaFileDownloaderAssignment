@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileDownloader": {
+      "commandName": "Project",
+      "commandLineArgs": "Testing"
+    }
+  }
+}
