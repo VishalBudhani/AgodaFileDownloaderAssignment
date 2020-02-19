@@ -14,7 +14,7 @@ namespace DownloaderFactory
         {
             long contentLengthToDownload = 0;
             int retryNumber = 1;
-
+            bool hasErrors = true;
             for (retryNumber = 1; retryNumber <= maxRetries; retryNumber++)
             {
                 try
@@ -33,6 +33,7 @@ namespace DownloaderFactory
                             contentLengthToDownload -= bytesRead;
                         } while (bytesRead > 0);                        
                     }
+                    hasErrors = false;
                     break;
                 }
                 catch (Exception ex)
@@ -55,14 +56,14 @@ namespace DownloaderFactory
                 }
                 return new FileDownloadResult()
                 {
-                    IsSuccess = false,
-                    RetryCount = retryNumber
+                    IsSuccess = !hasErrors,
+                    RetryCount = retryNumber-1
                 };
             }
             return new FileDownloadResult
             {
-                IsSuccess = true,
-                RetryCount = retryNumber
+                IsSuccess = !hasErrors,
+                RetryCount = retryNumber-1
             };
         }
 

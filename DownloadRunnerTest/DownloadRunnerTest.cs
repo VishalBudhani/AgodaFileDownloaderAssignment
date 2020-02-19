@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Moq;
+using DownloaderFactory;
 
 namespace DownloadRunnerTest
 {
@@ -63,6 +65,21 @@ namespace DownloadRunnerTest
 
             Assert.AreEqual(Directory.GetFiles(settings.FileDownloadLocation).Length, 0, "File count in the download directory is not zero");
 
+        }
+
+        /// <summary>
+        /// Tests the number of retries whenever an exception is encountered while downloading
+        /// a file
+        /// </summary>
+        [Test]
+        public void RetryCountTest()
+        {
+            int retryCount = 3;
+            var downloaderObj = new FileDownloader();
+            var result = downloaderObj.DownloadAndSaveFile(0, null, 0, null, retryCount);
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.Result.IsSuccess);
+            Assert.AreEqual(retryCount, result.Result.RetryCount);
         }
 
         [TearDown]
